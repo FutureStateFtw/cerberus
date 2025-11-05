@@ -1,0 +1,67 @@
+// Cerberus Database Schema
+
+Table applications {
+  id int [pk, increment]
+  name varchar(255) [not null, unique]
+  description text
+  created_at datetime [not null, default: `GETDATE()`]
+  updated_at datetime [not null, default: `GETDATE()`]
+  
+  Indexes {
+    name [unique]
+  }
+}
+
+Table application_roles {
+  application_id int [not null]
+  role varchar(100) [not null]
+  description text
+  created_at datetime [not null, default: `GETDATE()`]
+  
+  Indexes {
+    (application_id, role) [pk]
+  }
+}
+
+Table user_roles {
+  id int [pk, increment]
+  application_id int [not null]
+  role varchar(100) [not null]
+  person_id varchar(50) [not null]
+  justification text [not null]
+  added_by varchar(50) [not null]
+  added_at datetime [not null, default: `GETDATE()`]
+  
+  Indexes {
+    application_id
+    person_id
+    (application_id, person_id, role) [unique]
+  }
+}
+
+// Relationships
+Ref: application_roles.application_id > applications.id [delete: cascade]
+Ref: user_roles.application_id > applications.id [delete: cascade]
+Ref: user_roles.(application_id, role) > application_roles.(application_id, role) [delete: cascade]
+
+// Notes
+Note applications {
+  'Stores all applications managed by Cerberus.
+  Application names must be unique across the system.
+  When an application is created, three default roles are automatically created: user, admin, and authorizer.'
+}
+
+Note application_roles {
+  'Stores roles available for each application.
+  The combination of application_id and role must be unique.
+  Default roles (user, admin, authorizer) are created automatically when an application is added.
+  Roles cannot be edited, only deleted and recreated.'
+}
+
+Note user_roles {
+  'Stores user role assignments for applications.
+  Tracks who added the role, when, and why (justification).
+  A person can have multiple roles for the same application.
+  The combination of application_id, person_id, and role must be unique (prevents duplicate assignments).
+  Only person_id is stored; full person details are retrieved from external directory.'
+}
