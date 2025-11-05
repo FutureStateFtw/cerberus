@@ -18,8 +18,7 @@ Get all applications.
   {
     "id": 1,
     "name": "Roll Call",
-    "description": "App for recording a persons presence at an event.",
-    "permissionsDescription": "Open to netID; User role is not used; \nAdmin allows an admin view to show all events."
+    "description": "App for recording a persons presence at an event."
   }
 ]
 ```
@@ -45,8 +44,7 @@ Get a specific application by ID.
 {
   "id": 1,
   "name": "Roll Call",
-  "description": "App for recording a persons presence at an event.",
-  "permissionsDescription": "Open to netID; User role is not used; \nAdmin allows an admin view to show all events."
+  "description": "App for recording a persons presence at an event."
 }
 ```
 
@@ -77,8 +75,7 @@ Create a new application. Automatically creates three default roles: 'user', 'ad
 ```json
 {
   "name": "CardPulse",
-  "description": "Application for monitoring card access",
-  "permissionsDescription": "User can view own data; Admin can view all data"
+  "description": "Application for monitoring card access"
 }
 ```
 
@@ -87,8 +84,7 @@ Create a new application. Automatically creates three default roles: 'user', 'ad
 {
   "id": 5,
   "name": "CardPulse",
-  "description": "Application for monitoring card access",
-  "permissionsDescription": "User can view own data; Admin can view all data"
+  "description": "Application for monitoring card access"
 }
 ```
 
@@ -128,8 +124,7 @@ Update an existing application.
 ```json
 {
   "name": "CardPulse Updated",
-  "description": "Updated description",
-  "permissionsDescription": "Updated permissions description"
+  "description": "Updated description"
 }
 ```
 
@@ -138,8 +133,7 @@ Update an existing application.
 {
   "id": 5,
   "name": "CardPulse Updated",
-  "description": "Updated description",
-  "permissionsDescription": "Updated permissions description"
+  "description": "Updated description"
 }
 ```
 
